@@ -35,20 +35,3 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     });
   }
 });
-
-/* 動画ページのURLを引数として、video(mp4)の場所を返す関数 */
-function get_video_config(page_url){
-  return $.get(page_url).done(function(data) {
-    match = data.match(/http:\/\/www\.anitube\.se\/player\/config\.php\?key=[\w\d]+/);
-    config_url = match[0];
-    console.log(config_url);
-  });
-}
-
-function get_video_url(config_url){
-  return $.get(config_url).done(function(data) {
-    match = data.match(/http:\/\/[a-zA-Z0-9\/._-]+?\.mp4/);
-    video_url = match[0];
-    console.log(video_url);
-  });
-}
