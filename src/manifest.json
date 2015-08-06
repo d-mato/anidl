@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "anidl",
+  "version": "1.0",
+  "description": "Anitubeの動画をワンクリックでダウンロードできます",
+
+  "permissions": [
+    "contextMenus", "downloads", "http://www.anitube.se/"
+  ],
+
+  "background": {
+    "scripts": [ "jquery-2.1.4.min.js", "background.js" ],
+    "persistent": false
+  }
+}

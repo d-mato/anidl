@@ -1,5 +1,3 @@
-console.log('background started');
-
 chrome.runtime.onInstalled.addListener(function() {
   chrome.contextMenus.create({
     id: "dl",
@@ -21,13 +19,19 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
       title = match[1];
       console.log(title);
 
-      console.log("...");
       $.get(config_url, function(data) {
         match = data.match(/http:\/\/[a-zA-Z0-9\/._-]+?\.mp4/);
         video_url = match[0];
         console.log(video_url);
-        console.log("GET VIDEO URL");
-      });
+
+        console.log("Start download");
+        
+        chrome.downloads.download({
+          url: video_url,
+          filename: title + ".mp4"
+        });
+
+      }, 'text');
     });
   }
 });
